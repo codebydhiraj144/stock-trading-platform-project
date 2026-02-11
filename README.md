@@ -50,23 +50,15 @@ cd "Stock Trading Platform"
 ## 📸 Screenshots
 
 ### 1. Main Dashboard
-
-<img width="1888" height="889" alt="Screenshot 2026-02-11 110733" src="https://github.com/user-attachments/assets/ac871a6d-6512-43ff-9711-683fe33ce557" />
+<img src="https://github.com/user-attachments/assets/ac871a6d-6512-43ff-9711-683fe33ce557" width="100%" alt="Main Dashboard" />
 
 ### 2. Holdings & Portfolio
-
-![Orders](./<img width="1899" height="872" alt="Screenshot 2026-02-11 110756" src="https://github.com/user-attachments/assets/86f2576e-71e5-478f-805f-603a7a9c3d11" />
-screenshots/order-window.png)
-
-<img width="1889" height="889" alt="image" src="https://github.com/user-attachments/assets/6305e707-a3af-4b95-a679-03894db54060" />
-
+<img src="https://github.com/user-attachments/assets/6305e707-a3af-4b95-a679-03894db54060" width="100%" alt="Holdings and Portfolio" />
 
 ### 3. Order Placement (Buy/Sell)
-<img width="1896" height="851" alt="image" src="https://github.com/user-attachments/assets/02d2f40d-473f-49af-a5f4-d211f4b543fe" />
-<img width="1895" height="891" alt="image" src="https://github.com/user-attachments/assets/c0ecb538-9f73-4ae3-9a04-e633ad49cbc6" />
+<img src="https://github.com/user-attachments/assets/02d2f40d-473f-49af-a5f4-d211f4b543fe" width="100%" alt="Order Placement" />
 
-
-###orders
-<img width="1900" height="887" alt="image" src="https://github.com/user-attachments/assets/c817b211-e8f7-475d-bd2e-6cb6da928a51" />
+### 4. Orders History
+<img src="https://github.com/user-attachments/assets/c817b211-e8f7-475d-bd2e-6cb6da928a51" width="100%" alt="Orders History" />
 
 ---
