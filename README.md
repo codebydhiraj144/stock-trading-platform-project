@@ -34,15 +34,8 @@ The project is divided into three main components:
 - **Order Execution**: Simulate buying and selling with a "Buy/Sell" window.
 - **Data Visualization**: Charts to track portfolio performance.
 
----
 
-## ⚙️ Installation & Setup
-
-### 1. Clone the project
-```bash
-git clone https://github.com/codebydhiraj144/stock-trading-platform-project.git
-cd "Stock Trading Platform"
-
+## 📸 Screenshots
 
 ### 1. Main Dashboard
 
@@ -70,5 +63,17 @@ in Dashboard
 
 
 <img width="1895" height="891" alt="Screenshot 2026-02-11 111711" src="https://github.com/user-attachments/assets/c8d87ebb-d022-4c5d-9554-2e8a9471ebf7" />
+
+
+
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1. Clone the project
+```bash
+git clone https://github.com/codebydhiraj144/stock-trading-platform-project.git
+cd "Stock Trading Platform"
 
 
