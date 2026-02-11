@@ -45,20 +45,3 @@ cd "Stock Trading Platform"
 
 
 
----
-
-## 📸 Screenshots
-
-### 1. Main Dashboard
-<img src="https://github.com/user-attachments/assets/ac871a6d-6512-43ff-9711-683fe33ce557" width="100%" alt="Main Dashboard" />
-
-### 2. Holdings & Portfolio
-<img src="https://github.com/user-attachments/assets/6305e707-a3af-4b95-a679-03894db54060" width="100%" alt="Holdings and Portfolio" />
-
-### 3. Order Placement (Buy/Sell)
-<img src="https://github.com/user-attachments/assets/02d2f40d-473f-49af-a5f4-d211f4b543fe" width="100%" alt="Order Placement" />
-
-### 4. Orders History
-<img src="https://github.com/user-attachments/assets/c817b211-e8f7-475d-bd2e-6cb6da928a51" width="100%" alt="Orders History" />
-
----
