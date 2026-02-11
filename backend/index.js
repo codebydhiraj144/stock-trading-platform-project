@@ -250,11 +250,7 @@ app.post("/newOrder", async (req, res) => {
     }
 });
 
-// --- 4. SERVER INIT ---
-// ... (all your existing routes and logic above)
 
-// --- 4. SERVER INIT ---
-// This line is the magic fix for Render
 const PORT = process.env.PORT || 3002; 
 
 mongoose.connect(process.env.MONGO_URL).then(() => {
