@@ -250,9 +250,11 @@ app.post("/newOrder", async (req, res) => {
     }
 });
 
+const PORT = process.env.PORT || 3002; 
 
 mongoose.connect(process.env.MONGO_URL).then(() => {
     console.log("✅ MongoDB Connected");
     restoreAllData();
-    app.listen(3002, () => console.log("🚀 Port 3002 is Live"));
+    // Change '3002' to 'PORT' and add '0.0.0.0'
+    app.listen(PORT, "0.0.0.0", () => console.log(`🚀 Server is Live on Port ${PORT}`));
 }).catch(err => console.error("❌ Connection Error:", err));
