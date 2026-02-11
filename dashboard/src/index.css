@@ -1,0 +1,880 @@
+/* --- GLOBAL STYLES --- */
+/* Resets browser defaults and ensures consistent sizing/fonts across the app */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Ensures padding doesn't increase the width of elements */
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  background-color: #fff;
+  color: #444;
+  overflow: hidden; /* CRITICAL: Stops the whole page from moving; only specific areas will scroll */
+}
+
+/* --- 1. TOP NAVIGATION (FIXED & HORIZONTAL) --- */
+/* This is the top-most bar containing the Logo, Market Indices, and Main Menu */
+.topbar-container {
+  position: fixed; /* Glues the header to the top of the screen */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: #fff;
+  display: flex; /* Aligns Indices (left) and Menu (right) horizontally */
+  flex-direction: row; 
+  justify-content: space-between; /* Pushes items to opposite ends */
+  align-items: center;
+  padding: 0 30px;
+  border-bottom: 1px solid #eee;
+  z-index: 1000; /* Ensures the header stays above the sidebar and content */
+}
+
+/* Container for Nifty 50 and Sensex data */
+.indices-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px; /* Space between the two indices */
+}
+
+/* Individual index styling (Nifty/Sensex labels) */
+.nifty, .sensex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 50px;
+}
+
+.index {
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+}
+
+/* Styling for the red price change numbers */
+.index-gap {
+  color: #eb5757; /* Red color for market drops */
+  font-weight: 500;
+  font-size: 12px;
+}
+
+/* --- 2. MENU & PROFILE --- */
+/* Right-side navigation links and user profile section */
+.menu-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+}
+
+/* The list of navigation links (Dashboard, Orders, etc.) */
+.menu-list {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  gap: 25px;
+}
+
+.menu-list li a {
+  text-decoration: none;
+  font-size: 13px;
+  color: #666;
+  transition: color 0.2s;
+}
+
+.menu-list li a:hover {
+  color: #4184f3; /* Changes to Blue on hover */
+}
+
+/* Styling for the currently active link (e.g., Holdings) */
+.menu.selected {
+  color: #ff5722 !important; /* Active orange color */
+  font-weight: 500;
+}
+
+/* User profile section with avatar and ID */
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 20px;
+  border-left: 1px solid #eee; /* Vertical divider line */
+  cursor: pointer;
+}
+
+/* The pink circular icon with user initials */
+.avatar {
+  width: 26px;
+  height: 26px;
+  background: #fce4ec;
+  color: #f06292;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.username {
+  font-size: 12px;
+  color: #9b9b9b;
+  text-transform: uppercase;
+}
+
+/* --- 3. WATCHLIST SIDEBAR (FIXED) --- */
+/* The fixed sidebar on the left containing the stock search and list */
+.watchlist-container {
+  width: 450px;
+  height: calc(100vh - 60px); /* Full height minus the topbar height */
+  position: fixed; /* Glues the sidebar to the left */
+  top: 60px; /* Starts exactly where the topbar ends */
+  left: 0;
+  background-color: #fff;
+  border-right: 1px solid #eee;
+  overflow-y: auto; /* Allows only the sidebar to scroll if the stock list is long */
+  z-index: 900;
+}
+
+/* Wrapper for the search input field */
+.search-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.search {
+  border: none;
+  flex: 1;
+  width: 100%;
+  outline: none;
+  font-size: 13px;
+}
+
+/* --- 4. MAIN CONTENT AREA (SCROLLABLE) --- */
+/* This is the dashboard/holdings area where your data appears */
+.dashboard-content {
+  margin-left: 450px; /* Pushes content to the right so it doesn't hide under the sidebar */
+  margin-top: 60px;  /* Pushes content down so it doesn't hide under the topbar */
+  padding: 40px 60px;
+  height: calc(100vh - 60px); /* Sets height to fill the remaining screen space */
+  overflow-y: auto; /* IMPORTANT: This is the ONLY part that moves up and down */
+  background-color: #fff;
+  position: relative;
+}
+
+/* --- 5. DASHBOARD DATA COMPONENTS --- */
+/* Styling for the "Hi, User" header */
+.dashboard-header h6 {
+  font-size: 22px;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+/* Horizontal line used to separate sections */
+.divider {
+  border: none;
+  border-bottom: 1px solid #eee;
+  width: 100%; 
+  margin: 20px 0 40px 0;
+}
+
+.section {
+  margin-bottom: 50px;
+}
+
+/* Flexbox container for Equity/Holdings numbers and their details */
+.data {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 80px; /* Space between the big number and the side stats */
+  margin-top: 20px;
+}
+
+/* Large numbers (e.g., 3.7k) */
+.bold {
+  font-size: 44px;
+  font-weight: 400;
+  color: #444;
+}
+
+/* Large profit numbers (Green) */
+.profit {
+  font-size: 44px;
+  font-weight: 400;
+  color: #4caf50 !important; /* Green for Profit & Loss */
+}
+
+/* Add this near your other color styles */
+.loss {
+  color: #eb5757 !important; /* Kite Red */
+}
+
+/* The percentage (+5.20%) next to the profit */
+.profit small {
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+/* Vertical divider line inside data sections */
+.data hr {
+  height: 60px;
+  border: none;
+  border-left: 1px solid #eee;
+}
+
+/* Margin and balance details column */
+.second p {
+  font-size: 14px;
+  color: #9b9b9b;
+  margin: 8px 0;
+}
+
+.second span {
+  font-weight: 600;
+  color: #444;
+  margin-left: 10px;
+}
+
+/* --- 6. HOLDINGS TABLE --- */
+/* --- HOLDINGS CONTAINER --- */
+.holdings-container {
+  width: 100%;
+  padding: 20px;
+  
+    padding-bottom: 100px; /* This creates the extra scroll space you want */
+    overflow-y: visible
+}
+
+.holdings-container .title {
+  font-size: 18px;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+/* --- TABLE STYLING --- */
+.order-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 40px; /* Space between table and stats */
+}
+
+/* Remove fixed height and overflow from the table wrapper */
+.order-table, .holdings-table-container {
+  height: auto !important; 
+  max-height: none !important;
+  overflow: visible !important; /* This kills the inner scrollbar */
+}
+
+/* Ensure the main page handles the scrolling */
+.holdings {
+  overflow: visible;
+} 
+.order-table th {
+  text-align: left;
+  font-size: 12px;
+  color: #9b9b9b;
+  font-weight: 400;
+  padding: 15px 10px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+/* 1. Ensure the container has a scrolling context */
+/* REPLACE THIS BLOCK */
+.order-table {
+  width: 100%;
+  max-height: none !important; /* Forces table to full height */
+  overflow: visible !important; /* REQUIRED for sticky */
+  position: relative;
+}
+table thead tr {
+  position: sticky;
+  top: 0;
+  background-color: #fff; /* Match your background */
+  z-index: 10;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1); /* Subtle line under header */
+}
+/* 2. Make the header stick to the white dashboard area */
+/* REPLACE THIS BLOCK */
+.order-table thead th {
+  position: -webkit-sticky;
+  position: sticky;
+  /* top: -40px pulls it up to the edge of the scrollable area */
+  top: -40px; 
+  background-color: #ffffff !important; 
+  z-index: 100; 
+  padding: 15px 10px;
+  border-bottom: 1px solid #eeeeee;
+  color: #9b9b9b;
+  font-size: 12px;
+  font-weight: 400;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Shadow makes it look floating */
+}
+
+/* 3. Ensure the parent doesn't clip the sticky element */
+.holdings-container, .holdings {
+  overflow: visible !important;
+}
+
+.dashboard-content {
+  overflow-y: auto; /* This MUST be here for the sticky header to have a reference */
+}
+/* --- STATS ROW (The Fix for Horizontal Alignment) --- */
+.stats-row {
+  display: flex;            /* Forces columns to sit side-by-side */
+  flex-direction: row;      /* Horizontal layout */
+  justify-content: flex-start; 
+  gap: 80px;                /* Space between Investment, Value, and P&L */
+  border-top: 1px solid #eee;
+  padding-top: 30px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  position: sticky;
+}
+
+.stats-row .col {
+  display: flex;
+  flex-direction: column;   /* Title stays under the big number */
+}
+
+.stats-row h5 {
+  font-size: 28px;
+  font-weight: 400;
+  color: #444;
+  margin: 0;
+}
+
+/* Small decimals like .55 */
+.stats-row h5 span {
+  font-size: 14px;
+  color: #9b9b9b;
+}
+
+.stats-row p {
+  font-size: 13px;
+  color: #9b9b9b;
+  margin-top: 5px;
+}
+
+/* Green Profit Color */
+.stats-row .profit {
+  color: #4caf50 !important;
+}
+
+/* Add this to style the actual data cells */
+.order-table td {
+  padding: 15px 10px;
+  font-size: 13px;
+  color: #444;
+  border-bottom: 1px solid #eee; /* Light line between stocks */
+}
+
+/* Optional: Add a hover effect so the row lights up when you mouse over it */
+.order-table tr:hover {
+  background-color: #fbfbfb;
+  cursor: pointer;
+}
+
+thead th {
+  
+  background-color: #fff; /* Ensures text doesn't overlap */
+  z-index: 1;            /* Keeps header above the scrolling rows */
+  border-bottom: 1px solid #eee;
+}
+
+.holdings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  padding: 8px 12px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  width: 250px;
+  outline: none;
+}
+
+/* Ensure the table doesn't break the layout with 1000 rows */
+.order-table {
+  
+  overflow-y: auto;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 1;
+}
+
+
+/* --- WATCHLIST ITEMS --- */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list li {
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  position: relative; /* Necessary for absolute positioning of buttons */
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.list li:hover {
+  background-color: #fbfbfb;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.item p {
+  font-size: 13px;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* Color Coding for Up/Down stocks */
+.item p.down, .down {
+  color: #eb5757;
+}
+
+.item p.up, .up {
+  color: #4caf50;
+}
+
+.itemInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.itemInfo .percent {
+  font-size: 11px;
+  color: #9b9b9b;
+}
+
+/* --- WATCHLIST ACTIONS (BUY/SELL BUTTONS) --- */
+.actions {
+  position: absolute;
+  right: 10px;
+  background: #fbfbfb; /* Matches hover color to hide price behind */
+  padding-left: 10px;
+  display: flex;
+  gap: 5px;
+}
+
+.actions button {
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  border: none;
+  border-radius: 2px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.actions .buy { background-color: #4184f3; }
+.actions .sell { background-color: #ff5722; }
+
+/* --- WATCHLIST ACTION BUTTONS --- */
+.watchlist-container .actions {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #fff; /* Masks the price on hover */
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  box-shadow: -10px 0px 10px rgba(255, 255, 255, 0.9);
+}
+
+.watchlist-container .buy, 
+.watchlist-container .sell {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  margin-right: 4px;
+}
+
+.watchlist-container .buy { background-color: #4184f3; }
+.watchlist-container .sell { background-color: #ff5722; }
+
+.watchlist-container .action {
+  width: 28px;
+  height: 28px;
+  background: none;
+  border: 1px solid #eee;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-right: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.watchlist-container .icon {
+  font-size: 16px !important;
+  color: #666;
+}
+
+/* --- HOLDINGS SUMMARY (FIX HORIZONTAL ALIGNMENT) --- */
+.stats-row {
+  display: flex !important;  /* Forces horizontal layout */
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 120px;                /* Large gap like Zerodha */
+  border-top: 1px solid #eee;
+  padding-top: 30px;
+  margin-top: 40px;
+}
+
+.stats-row .col {
+  display: flex;
+  flex-direction: column;
+}
+
+.stats-row h5 {
+  font-size: 32px;
+  font-weight: 400;
+  color: #444;
+  margin: 0;
+}
+
+.stats-row h5 span {
+  font-size: 16px;
+  color: #9b9b9b;
+}
+
+.stats-row p {
+  font-size: 13px;
+  color: #9b9b9b;
+  margin-top: 10px;
+}
+
+
+
+
+
+
+
+.containerClass {
+  position: fixed;
+  left: 35%;
+  bottom: 20%;
+  width: 380px;
+  background-color: white;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  padding: 20px;
+  border-radius: 4px;
+  border-top: 5px solid #4184f3;
+}
+.inputs { display: flex; gap: 10px; margin-bottom: 20px; }
+fieldset { border: 1px solid #eee; padding: 5px; flex: 1; }
+input { border: none; width: 100%; outline: none; font-size: 1.1rem; }
+.buttons { display: flex; justify-content: space-between; align-items: center; }
+.btn-blue { background: #4184f3; color: white; border: none; padding: 10px 20px; border-radius: 3px; cursor: pointer; }
+.btn-grey { background: #eee; border: none; padding: 10px 20px; margin-left: 10px; cursor: pointer; }
+
+
+
+/* Gives the Sell window the Zerodha red border */
+.sell-window {
+  border-top: 5px solid #df514c !important;
+}
+
+/* Red button for selling */
+.btn-red {
+  background-color: #df514c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.btn-red:hover {
+    background-color: #c0392b;
+}
+
+
+
+
+/* Add this to BuyActionWindow.css to hide arrows on readOnly fields */
+input[readonly]::-webkit-outer-spin-button,
+input[readonly]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[readonly] {
+  -moz-appearance: textfield; /* For Firefox */
+}
+
+
+
+
+.text-muted {
+  color: #9b9b9b;
+  font-size: 13px;
+}
+
+.buy-label {
+  color: #4184f3;
+  font-weight: 600;
+  background-color: #e8f0fe;
+  padding: 2px 8px;
+  border-radius: 3px;
+  text-align: center;
+}
+
+.sell-label {
+  color: #df514c;
+  font-weight: 600;
+  background-color: #fdeaea;
+  padding: 2px 8px;
+  border-radius: 3px;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  color: #444;
+  border-bottom: 1px solid #eee;
+  padding: 12px;
+}
+
+td {
+  padding: 12px;
+  border-bottom: 1px solid #f8f8f8;
+}
+
+
+.status-badge {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.status-badge.complete {
+  background-color: #e6f4ea;
+  color: #1e7e34; /* Green for Zerodha Complete */
+}
+
+.status-badge.rejected {
+  background-color: #fce8e6;
+  color: #d93025; /* Red for Rejected */
+}
+
+.status-badge.cancelled {
+  background-color: #f1f3f4;
+  color: #5f6368; /* Grey for Cancelled */
+}
+
+
+/* --- FUNDS PAGE STYLES --- */
+.funds-container {
+  padding: 40px 60px; /* Matches dashboard padding */
+}
+
+.funds-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #eee;
+}
+
+.funds-header .actions {
+  display: flex;
+  gap: 15px;
+}
+
+.funds-content {
+  display: flex;
+  gap: 100px; /* Large gap between Equity and Commodity */
+  margin-top: 30px;
+}
+
+.equity-section, .commodity-section {
+  flex: 1;
+  max-width: 400px;
+}
+
+.section-title {
+  font-size: 18px;
+  color: #444;
+  margin-bottom: 30px;
+}
+.detail-row {
+  display: flex; /* Forces label and value to opposite sides */
+  justify-content: space-between; 
+  padding: 15px 0;
+  border-bottom: 1px solid #f8f8f8; /* Adds the subtle line seen in holdings */
+  width: 400px; /* Limits the width so it doesn't stretch across the whole screen */
+}
+
+.bold-value {
+  font-size: 22px;
+  color: #444;
+}
+
+.bold-value.blue {
+  color: #4184f3; /* Available cash blue */
+  font-weight: 500;
+}
+
+.secondary {
+  color: #9b9b9b;
+  border: none;
+  padding: 8px 0;
+}
+
+/* Button variants to match your other screens */
+.btn-green { background-color: #4caf50; color: white; border: none; padding: 10px 20px; border-radius: 3px; cursor: pointer; }
+.btn-blue { background-color: #4184f3; color: white; border: none; padding: 10px 20px; border-radius: 3px; cursor: pointer; }
+
+.detail-row.secondary span:last-child {
+  color: #666;      /* Slightly darker than the label */
+  font-weight: 500; /* Makes the 0.00 stand out slightly */
+  font-size: 14px;
+}
+
+/* --- MENU PROFILE & LOGOUT STYLES --- */
+/* --- FIXING THE PROFILE ALIGNMENT --- */
+
+.menu-container {
+  display: flex;
+  align-items: center; /* Aligns links and profile in one horizontal line */
+  gap: 20px;
+}
+.profile-section {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important; /* Forces Avatar, ID, and Button to center vertically */
+  gap: 15px;
+  padding-left: 20px;
+  border-left: 1px solid #eee;
+  height: 100%; /* Ensures it aligns with the 60px TopBar height */
+}
+
+.avatar {
+  width: 24px;
+  height: 24px;
+  background-color: #fce4ec; /* Kite pink */
+  color: #f06292;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 600;
+}
+.username {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.2; /* Normalizes text height to prevent pushing elements up/down */
+  font-size: 13px;
+  color: #444;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+/* Updated Logout Button to match Kite's subtle style */
+.logout-btn {
+  background: #fff;
+  border: 1px solid #eee;
+  padding: 0 10px;        /* Side padding only; height is fixed below */
+  height: 26px;           /* Set specific height to match the ZU avatar circle */
+  font-size: 11px;
+  color: #9b9b9b;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;          /* Use flex inside the button for text centering */
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s ease;
+}
+.logout-btn:hover {
+  border-color: #ff5722; /* Kite Orange hover effect */
+  color: #ff5722;
+}
+.profile-section:hover {
+  background-color: #fbfbfb; /* Very light grey on hover */
+}
+
+
+
+
+
+
+
+.positions-summary-container {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 120px; /* Realized aur Unrealized ke beech space */
+  border-top: 1px solid #eee;
+  padding: 25px 0;
+  margin-top: 30px;
+}
+
+.positions-summary-container .col {
+  display: flex;
+  flex-direction: column;
+}
+
+.summary-val {
+  font-size: 20px !important; /* Professional Kite size */
+  font-weight: 400;
+  margin-top: 5px;
+}
+
+.summary-profit { color: #4caf50 !important; }
+.summary-loss { color: #eb5757 !important; }
+
+/* Add this to your style file */
+.app-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.app-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-color: #387ed1 !important; /* Kite Blue */
+}

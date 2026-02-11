@@ -1,0 +1,14 @@
+# Dependency folders
+node_modules/
+**/node_modules/
+
+# Secrets
+.env
+.env.local
+
+# Production
+/build
+/dist
+
+# OS files
+.DS_Store

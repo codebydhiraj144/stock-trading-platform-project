@@ -1,0 +1,147 @@
+/* index.css */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f0f4f8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.nav-link {
+  margin-right: 40px;
+}
+
+#supportHero {
+  background-color: rgb(56, 126, 209);
+  color: white;
+}
+
+#supportHero a {
+  color: white;
+}
+
+#supportTitle {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 150px;
+}
+
+#supportHero input{
+  padding: 10px 50px;
+  width: 80%;
+  font-size: 20px;
+  border-radius:10px ;
+  border: none;
+  margin-bottom: 20px;
+}
+
+#supportHero .col-6 a {
+  
+  margin: 20px ;
+  
+}
+
+/*login */
+.auth_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  background-color: #fbfbfb;
+}
+
+.auth_box {
+  background: #fff;
+  padding: 40px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.auth_title {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 25px;
+  color: #444;
+  text-align: center;
+}
+
+.input_group {
+  margin-bottom: 20px;
+}
+
+.input_group label {
+  display: block;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.input_group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  outline: none;
+}
+
+.auth_footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 13px;
+  color: #9b9b9b;
+}
+
+/* Center the form on the screen */
+.auth_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background-color: #fbfbfb;
+}
+
+/* The white card behind the form */
+.auth_form_box {
+  background: white;
+  padding: 40px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* Fix the overlapping inputs */
+.auth_field {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth_field label {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.auth_field input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  outline: none;
+}
+
+.auth_header {
+  margin-bottom: 25px;
+  font-weight: 500;
+}
