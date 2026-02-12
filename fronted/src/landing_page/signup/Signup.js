@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+// In Login.js and Signup.js
+import { API_BASE_URL, DASHBOARD_URL } from "../../api";
 
 const Signup = () => {
   // State object to manage multiple registration fields
@@ -11,7 +13,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       // Sending registration data to the Auth Backend service
-      const { data } = await axios.post("http://localhost:3002/signup", values);
+     const { data } = await axios.post(`${API_BASE_URL}/signup`, values);
       
       if (data.success) {
         alert("Account created! Please login.");

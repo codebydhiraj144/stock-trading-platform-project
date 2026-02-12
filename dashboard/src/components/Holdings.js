@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from 'axios';
 import GeneralContext from "./GeneralContext";
 import { VerticalChart } from "./VerticalChart";
-
+import { API_BASE_URL } from "../api";
 const Holdings = () => {
   const [allHoldings, setAllHoldings] = useState([]);
   const [searchTerm, setSearchTerm] = useState(""); 
@@ -13,7 +13,7 @@ const Holdings = () => {
     const userData = userString ? JSON.parse(decodeURIComponent(userString)) : null;
 
     if (userData && userData.username) {
-      axios.get(`http://localhost:3002/allHoldings?user=${userData.username}`)
+      axios.get(`${API_BASE_URL}/allHoldings?user=${userData.username}`)
         .then((res) => {
           setAllHoldings(res.data);
         })

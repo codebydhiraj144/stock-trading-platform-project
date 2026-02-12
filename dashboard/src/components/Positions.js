@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import GeneralContext from "./GeneralContext";
-
+import { API_BASE_URL } from "../api";
 const Positions = () => {
   const [allPositions, setAllPositions] = useState([]);
   // Fixed ESLint Warning: Removed triggerRefresh if not used for a specific action, 
@@ -13,7 +13,7 @@ const Positions = () => {
     const userData = userString ? JSON.parse(decodeURIComponent(userString)) : null;
 
     if (userData && userData.username) {
-      axios.get(`http://localhost:3002/allPositions?user=${userData.username}`)
+    axios.get(`${API_BASE_URL}/allPositions?user=${userData.username}`)
         .then((res) => setAllPositions(res.data))
         .catch((err) => console.error("Error fetching positions:", err));
     }

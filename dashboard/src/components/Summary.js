@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import GeneralContext from "./GeneralContext"; // Import your context
-
+import { API_BASE_URL } from "../api";
 const Summary = () => {
   const [holdings, setHoldings] = useState([]);
   
@@ -16,7 +16,7 @@ const Summary = () => {
   useEffect(() => {
     if (user && user.username) {
       // We pass the specific user to the backend to get "New User" data only
-      axios.get(`http://localhost:3002/allHoldings?user=${user.username}`)
+     axios.get(`${API_BASE_URL}/allHoldings?user=${user.username}`)
         .then((res) => {
           setHoldings(res.data);
         });

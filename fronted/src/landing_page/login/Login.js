@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+// In Login.js and Signup.js
+import { API_BASE_URL, DASHBOARD_URL } from "../../api";
 const Login = () => {
     const [values, setValues] = useState({ username: "", password: "" });
 
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:3002/login", values);
+           const res = await axios.post(`${API_BASE_URL}/login`, values);
 
-            if (res.data.success) {
-                // Cross-port redirect: Passing user data to the Dashboard on Port 3001
-                const userData = encodeURIComponent(JSON.stringify(res.data.user));
-                window.location.href = `http://localhost:3001/?user=${userData}`;
-            }
+           if (res.data.success) {
+    const userData = encodeURIComponent(JSON.stringify(res.data.user));
+    // Redirects to localhost:3001 locally or your Netlify URL in production
+    window.location.href = `${DASHBOARD_URL}/?user=${userData}`;
+}
         } catch (err) {
             // Graceful error handling for failed auth or server downtime
             alert(err.response?.data?.message || "Login failed! Please check your connection.");
