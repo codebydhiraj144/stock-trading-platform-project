@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 // In Login.js and Signup.js
-import { API_BASE_URL, DASHBOARD_URL } from "../../api";
+import { API_BASE_URL } from "../../api";
 
 const Signup = () => {
   // State object to manage multiple registration fields

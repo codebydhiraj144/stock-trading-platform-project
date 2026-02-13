@@ -9,7 +9,15 @@ const { OrdersModel } = require('./model/OrdersModel');
 const { UsersModel } = require('./model/UsersModel');
 const bcrypt = require("bcryptjs");
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: [
+        "https://stock-trading-platform-project-k5pl.vercel.app", // Your Vercel Frontend URL
+        "http://localhost:3000",                               // For local testing
+        "http://localhost:3001"                                // For local dashboard testing
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}));
 app.use(express.json());
 
 // --- 1. OPTIMIZED BATCH DATA ENGINE ---
@@ -238,11 +246,16 @@ app.post("/newOrder", async (req, res) => {
         }
 
         // Record User-Specific Order
-        await new OrdersModel({
-            user, name, qty: numQty, price: userPrice, mode: modeInput,
-            time: new Date().toLocaleTimeString('en-IN'),
-            status: "COMPLETE"
-        }).save();
+        // index.js (Backend)
+await new OrdersModel({
+    user, 
+    name, 
+    qty: numQty, 
+    price: userPrice, 
+    mode: modeInput,
+    time: new Date().toISOString(), // <--- CHANGE THIS LINE
+    status: "COMPLETE"
+}).save();
 
         res.status(200).json({ status: "success" });
     } catch (err) {
@@ -250,6 +263,9 @@ app.post("/newOrder", async (req, res) => {
     }
 });
 
+
+
+// --- 4. SERVER INIt
 const PORT = process.env.PORT || 3002; 
 
 mongoose.connect(process.env.MONGO_URL).then(() => {

@@ -33,7 +33,11 @@ const Orders = () => {
           <tbody>
             {allOrders.map((order, index) => (
               <tr key={index}>
-                <td>{order.time || "--:--"}</td>
+               <td>
+  {order.time && !isNaN(new Date(order.time).getTime()) 
+    ? new Date(order.time).toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata' }) 
+    : order.time || "--:--"}
+</td>
                 <td style={{ fontWeight: "bold" }}>{order.name}</td>
                 <td>{order.qty}</td>
                 <td>{order.price.toFixed(2)}</td>
