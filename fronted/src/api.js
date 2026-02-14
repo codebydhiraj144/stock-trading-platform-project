@@ -8,4 +8,4 @@ export const API_BASE_URL = "https://stock-trading-platform-project-t1ks.onrende
 // 2. Set the Dashboard URL based on where you are working
 export const DASHBOARD_URL = isLocal 
     ? "http://localhost:3001"  // Change this to your local port (3000 or 3001)
-    : "https://stock-trading-platform-project-dashboard.vercel.app"; // Use the PRODUCTION domain
+    : "https://stock-trading-platform-project-dash.vercel.app"; // Use the PRODUCTION domain
